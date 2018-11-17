@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ajusa/lit@latest/dist/lit.css">
+    <script>
+        function main() {
+            let single = document.querySelector('input[name = "plurality"]:checked').value == "singular";
+            let formal = document.querySelector('input[name = "formality"]:checked').value == "formal";
+            let person = document.querySelector('#person').value;
+            let infinitive = document.querySelector('#text').value;
+            let regex = /(ir|ar|er)/ug
+            var ending
+            switch (person) {
+                case "first":
+                    ending = (single) ? "o" : "amos";
+                    break;
+                case "second":
+                    ending = single ? (formal ? "a" : "as") : "an";
+                    break;
+                case "third":
+                    ending = (single) ? "a" : "an";
+                    break;
+                default:
+                    alert("Select Point of View!");
+            }
+            infinitive = infinitive.replace(regex,ending)
+            alert(infinitive);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="c">
+        <h1><b>Conjugatron 9000</b></h1>
+        <div class="row">
+            <div class="col 9">
+                <input id="text" class="card w-100" placeholder="Infinitive" pattern="(.*ir|.+er|.+ar)$"></textarea>
+            </div>
+            <div class="c">
+                <button type="submit" class="btn primary" onclick="main()">Conjugate!</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Person
+                <select id="person" class="card w-100">
+                    <option value="first">First</option>
+                    <option value="second">Second</option>
+                    <option value="third">Third</option>
+                </select>
+            </div>
+            <div class="col">
+                Plurality<br>
+                <input type="radio" name="plurality" value="singular" checked="checked"> Singular<br>
+                <input type="radio" name="plurality" value="plural"> Plural<br>
+            </div>
+            <div class="col">
+                Formality<br>
+                <input type="radio" name="formality" value="formal" checked="checked"> Formal<br>
+                <input type="radio" name="formality" value="informal"> Informal<br>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
