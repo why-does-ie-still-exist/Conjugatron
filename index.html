@@ -10,7 +10,7 @@
             let formal = document.querySelector('input[name = "formality"]:checked').value == "formal";
             let person = document.querySelector('#person').value;
             let infinitive = document.querySelector('#text').value;
-            let regex = /(ir|ar|er)/ug
+            let regex = /(?<=\w*)ar(?=[\W]+|$)/ug
             var ending
             switch (person) {
                 case "first":
@@ -25,8 +25,12 @@
                 default:
                     alert("Select Point of View!");
             }
-            infinitive = infinitive.replace(regex,ending)
-            alert(infinitive);
+            if (regex.test(infinitive)) {
+                infinitive = infinitive.replace(regex, ending)
+                alert(infinitive);
+            } else {
+                alert("No -ar infinitives found")
+            }
         }
     </script>
 </head>
@@ -36,7 +40,7 @@
         <h1><b>Conjugatron 9000</b></h1>
         <div class="row">
             <div class="col 9">
-                <input id="text" class="card w-100" placeholder="Infinitive" pattern="(.*ir|.+er|.+ar)$"></textarea>
+                <input id="text" class="card w-100" placeholder="(-ar) Infinitive" pattern="(.*ir|.+er|.+ar)$"></textarea>
             </div>
             <div class="c">
                 <button type="submit" class="btn primary" onclick="main()">Conjugate!</button>

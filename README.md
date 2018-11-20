@@ -1,5 +1,5 @@
-# Conjugatron 9000
-Spanish Infinitive Conjugator
+﻿# Conjugatron 9000
+Spanish -ar Infinitive Conjugator
 
 *I got bored*
 
